@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <h2>Current Weeks Events</h2>
+      <br/>      
+      <button *ngIf="isAuthenticated()" (click)="clickLeft()" class="glyphicon glyphicon-chevron-left"></button>
+      <button *ngIf="isAuthenticated()" (click)="clickRight()" class="glyphicon glyphicon-chevron-right"></button>
+
+      <div class = "row" *ngFor="let s of thisWeeksDays; let i=index;" (click)="onSelect(s)" [class.selected]="s === selected">
+        <h3>{{s}}</h3>
+
+        <table *ngIf="events" border="2" class="table">
+          <thead>
+            <tr>
+              <th>Event Date</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of thisWeeksEvents; let i=index;" (click)="onSelect(e)" [class.selected]="e === selected" >
+              <td *ngIf="isCorrectDate(e.eventDate,s)">{{e.eventDate}}</td>
+              <td *ngIf="isCorrectDate(e.eventDate,s)">{{e.dateFrom}}</td>
+              <td *ngIf="isCorrectDate(e.eventDate,s)">{{e.dateTo}}</td>
+              <td *ngIf="isCorrectDate(e.eventDate,s)">{{e.description}}</td>
+            </tr>
+          </tbody>
+         </table>  
+      </div>
+
+
+      
+
+
+    </div>
+  </div>
+</div>
